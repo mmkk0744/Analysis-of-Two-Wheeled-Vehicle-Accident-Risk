@@ -35,8 +35,127 @@
 - 사고가 자주 발생하는 지역이 어떤 원인으로 인해 위험지역으로 선정되었는지 상세 분석
 - SHAP 값을 활용하여 각 위험 요인이 사고 발생에 미치는 영향 평가
 
-> ## > 2. 분석 프로세스
+> ## 2. 분석 프로세스
 <img width="1000" alt="Image" src="https://github.com/user-attachments/assets/2591888e-7220-4c66-9025-2527d8c6cb7a" />
 
 <br>
+
+> ## 3. EPDO 산출 예시
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>사고 위치</th>
+            <th>시점</th>
+            <th>사망자수</th>
+            <th>중상자수</th>
+            <th>경상자수</th>
+            <th>부상자수</th>
+            <th style="background-color: #FFD700;">EPDO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>대구광역시 북구 a동</td>
+            <td>2019년 1월 1일 02시</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>3</td>
+            <td style="background-color: #FFD700;">20</td>
+        </tr>
+        <tr>
+            <td>대구광역시 북구 b동</td>
+            <td>2019년 1월 1일 04시</td>
+            <td>0</td>
+            <td>0</td>
+            <td>2</td>
+            <td>0</td>
+            <td style="background-color: #FFD700;">6</td>
+        </tr>
+        <tr>
+            <td>대구광역시 달서구 c동</td>
+            <td>2019년 1월 1일 07시</td>
+            <td>3</td>
+            <td>0</td>
+            <td>0</td>
+            <td>2</td>
+            <td style="background-color: #FFD700;">38</td>
+        </tr>
+        <tr>
+            <td>대구광역시 달서구 d동</td>
+            <td>2019년 1월 2일 15시</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>1</td>
+            <td style="background-color: #FFD700;">12</td>
+        </tr>
+    </tbody>
+</table>
+
+### EPDO(Equivalent Property Damage Only)란?
+EPDO(대물피해환산계수) = 사망자수 x 12 + 중상자수 x 5 + 경상자수 x 3 + 부상신고자수
+
+<br>
+
+### 즉, 단순히 사고횟수를 파악하기 보단 해당 사고의 심각성을 파악할 수 있다.
+
+<br>
+
+> ## 4. 데이터 수집
+<img width="1000" alt="Image" src="https://github.com/user-attachments/assets/510fa5c0-e509-4f62-bbbc-c3feb2f9d9d2" />
+
+
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>데이터</th>
+            <th>제공 플랫폼</th>
+            <th>데이터 상세</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>단속 카메라 데이터</td>
+            <td><a href="#">공공데이터포털</a></td>
+            <td>경찰청_무인교통단속카메라_20220819.csv</td>
+        </tr>
+        <tr>
+            <td>어린이 보호구역 데이터</td>
+            <td><a href="#">공공데이터포털</a></td>
+            <td>전국어린이보호구역표준데이터.csv</td>
+        </tr>
+        <tr>
+            <td>버스 정류장 데이터</td>
+            <td><a href="#">공공데이터포털</a></td>
+            <td>국토교통부_전국 버스정류장 위치정보</td>
+        </tr>
+        <tr>
+            <td>부문별 교통사고 현황</td>
+            <td><a href="#">TAAS</a></td>
+            <td>16~21년도 교통사고 유형별 현황</td>
+        </tr>
+        <tr>
+            <td>이륜차 사고 데이터</td>
+            <td><a href="#">TAAS</a></td>
+            <td>19~21년도 가해차종-이륜차 또는 피해차종-이륜차 사고 정보</td>
+        </tr>
+        <tr>
+            <td>이륜차 데이터</td>
+            <td><a href="#">KOSIS</a></td>
+            <td>이륜차신고현황_시도별</td>
+        </tr>
+        <tr>
+            <td>인구 데이터</td>
+            <td><a href="#">KOSIS</a></td>
+            <td>행정구역(시군구)별 인구수</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
 
