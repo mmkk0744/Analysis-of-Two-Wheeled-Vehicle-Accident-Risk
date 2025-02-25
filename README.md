@@ -35,6 +35,8 @@
 - 사고가 자주 발생하는 지역이 어떤 원인으로 인해 위험지역으로 선정되었는지 상세 분석
 - SHAP 값을 활용하여 각 위험 요인이 사고 발생에 미치는 영향 평가
 
+<br>
+
 > ## 2. 분석 프로세스
 <img width="1000" alt="Image" src="https://github.com/user-attachments/assets/2591888e-7220-4c66-9025-2527d8c6cb7a" />
 
@@ -158,4 +160,71 @@ EPDO(대물피해환산계수) = 사망자수 x 12 + 중상자수 x 5 + 경�
 
 </body>
 </html>
+
+<br>
+
+> ## 5. 최적 모델 선정
+
+<body>
+<table>
+    <thead>
+        <tr>
+            <th class="diagonal-header" rowspan="2">평가지표</th>
+            <th colspan="4">모델</th>
+        </tr>
+        <tr>
+            <th>Random Forest</th>
+            <th>LGBM</th>
+            <th>XGB</th>
+            <th class="catboost">CatBoost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>RMSE_test</td>
+            <td>27.15</td>
+            <td>27.08</td>
+            <td>28.02</td>
+            <td class="catboost">26.89</td>
+        </tr>
+        <tr>
+            <td>RMSLE_test</td>
+            <td>0.35</td>
+            <td>0.36</td>
+            <td>0.36</td>
+            <td class="catboost">0.34</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+
+
+### RMSE가 가장 낮고 RMSLE가 두번째로 낮은 `CatBoost` 모델 선정
+- CatBoost 최적 파라미터 : 'depth': 3, 'iterations': 100, 'learning_rate': 0.1, 'subsample': 1
+
+    - <b> Under Estimation에 더 큰 패널티를 부여하는 RMSLE 평가 지표도 고려
+    - RMSE는 실제 값 20이고 예측 값이 10 혹은 30인 경우에 같은 평가 지표 값을 가지지만, 
+    - RMSLE는 실제 값 보다 더 낮게 예측한 경우가 더 높은 RMSLE(더 높은 패널티)를 가한다. 
+    - 이륜차 위험도 예측 모델은 실제 값을 더 낮게 예측하는 것이 더 치명적이다. </b>
+
+<br>
+
+> ## 6. 모델 결과 해석
+<img width="1000" alt="Image" src="https://github.com/user-attachments/assets/439631c6-b59e-4b61-8b88-03328633579e" />
+
+<br>
+
+<img width="1000" alt="Image" src="https://github.com/user-attachments/assets/5c45097c-b7a4-40a6-b4af-8c069c8b9e39" />
+
+### 단속 카메라가 많은 지역에서 이륜차의 EPDO를 억제하지 못하고 있음
+
+
+> ## 7. 정책적 제언
+<img width="700" alt="Image" src="https://github.com/user-attachments/assets/888ebd2d-6af1-4576-99e9-7a375e67b2bc" />
+
+### 이륜차는 후면 번호판만 부착되어 있는 특성상 <br> 이륜차의 신호, 속도 위반은 일반 무인 단속 카메라 적발이 어려움
+
+### -> 이에 후면을 단속할 수 있는 CCTV 설치가 필요하다고 판단됨
 
